@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ZenSmile Dental Clinic | Premium Dentistry in Colaba, Mumbai</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--navy2:#0d1f3c;--navy3:#122447;
+  --blue:#1a56db;--blue2:#2563eb;--blue3:#3b82f6;
+  --sky:#7cb9f4;--sky2:#bfdbfe;
+  --white:#ffffff;--off:#f8faff;--off2:#eef3fc;
+  --mid:#4a6285;--light:#8aa4c8;
+  --gold:#c9a84c;--success:#10b981;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--off2)}::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:2px}
+
+/* CURSOR */
+.cur-dot,.cur-ring{position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
+.cur-dot{width:8px;height:8px;background:var(--blue2);border-radius:50%;transition:transform .08s}
+.cur-ring{width:36px;height:36px;border:1.5px solid rgba(37,99,235,.4);border-radius:50%;z-index:99998;transition:all .15s ease}
+.cur-ring.h{width:54px;height:54px;border-color:var(--blue2);background:rgba(37,99,235,.05)}
+
+/* WA */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9990;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 30px rgba(37,211,102,.4);animation:wap 2.2s infinite;transition:transform .3s}
+.wa-float:hover{transform:scale(1.1)}.wa-float svg{width:28px;height:28px;fill:#fff}
+@keyframes wap{0%,100%{box-shadow:0 8px 30px rgba(37,211,102,.4)}50%{box-shadow:0 8px 50px rgba(37,211,102,.6)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;padding:1.6rem 5%;display:flex;align-items:center;justify-content:space-between;transition:all .5s}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(24px);padding:1rem 5%;box-shadow:0 2px 40px rgba(10,22,40,.07);border-bottom:1px solid rgba(26,86,219,.08)}
+.logo{text-decoration:none;display:flex;align-items:center;gap:.7rem}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--blue2),var(--navy2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.logo-main{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:.02em;display:block;line-height:1}
+nav.scrolled .logo-main{color:var(--navy)}
+.logo-sub{font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:var(--sky);display:block;margin-top:2px}
+nav.scrolled .logo-sub{color:var(--blue2)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.63rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;transition:color .25s;position:relative}
+nav.scrolled .nav-links a{color:var(--mid)}
+.nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a:hover{color:var(--blue2)}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--blue2);transform:scaleX(0);transition:transform .3s;transform-origin:center}
+nav.scrolled .nav-links a:hover::after{transform:scaleX(1)}
+.nav-book{background:var(--blue2)!important;color:#fff!important;padding:.6rem 1.5rem;border-radius:8px;font-weight:500!important}
+.nav-book::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s}
+nav.scrolled .hamburger span{background:var(--navy)}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:680px;overflow:hidden;background:var(--navy);display:flex;align-items:center}
+#particle-canvas{position:absolute;inset:0;z-index:0}
+.hero-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(37,99,235,.18) 0%,transparent 70%);z-index:1;pointer-events:none}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.04) 1px,transparent 1px);background-size:60px 60px;z-index:1;pointer-events:none}
+.hero-inner{position:relative;z-index:3;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;padding:0 5%;max-width:1300px;margin:0 auto;width:100%;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.7rem;border:1px solid rgba(124,185,244,.2);background:rgba(124,185,244,.06);padding:.45rem 1.1rem;border-radius:100px;margin-bottom:1.8rem;opacity:0;animation:fadeUp .6s .3s ease forwards}
+.bdot{width:6px;height:6px;background:var(--success);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-badge span{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sky)}
+.hero-h1{font-family:'Libre Baskerville',serif;font-size:clamp(2.8rem,6vw,5.8rem);font-weight:400;line-height:1.05;color:#fff;opacity:0;animation:fadeUp .9s .5s ease forwards}
+.hero-h1 em{font-style:italic;color:var(--sky)}
+.hero-h1 .outline{-webkit-text-stroke:1px rgba(255,255,255,.2);color:transparent}
+.hero-p{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.45);line-height:2;margin:1.6rem 0 2.6rem;max-width:480px;opacity:0;animation:fadeUp .7s .75s ease forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .95s ease forwards}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 2.2rem;font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .35s;font-family:'Outfit',sans-serif;border:none;cursor:pointer;border-radius:10px}
+.btn-primary{background:var(--blue2);color:#fff;box-shadow:0 8px 30px rgba(37,99,235,.3)}.btn-primary:hover{background:var(--blue);transform:translateY(-3px)}
+.btn-ghost-w{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.15)}.btn-ghost-w:hover{background:rgba(255,255,255,.13);transform:translateY(-3px)}
+.btn-wa{background:#25D366;color:#fff}.btn-wa:hover{background:#1ebe5d;transform:translateY(-3px)}
+.btn-outline{background:transparent;color:var(--blue2);border:1.5px solid var(--blue2)}.btn-outline:hover{background:var(--blue2);color:#fff}
+.btn-white{background:#fff;color:var(--navy2);font-weight:600}.btn-white:hover{background:var(--off);transform:translateY(-3px)}
+.btn-ghost-outline{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.15)}.btn-ghost-outline:hover{border-color:var(--sky);color:var(--sky)}
+
+/* HERO RIGHT - 3D TOOTH */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;height:500px;opacity:0;animation:fadeUp 1s .6s ease forwards}
+.tooth-wrap{position:relative;width:300px;height:300px}
+.tooth-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.25) 0%,transparent 70%);animation:glowP 3s ease-in-out infinite}
+@keyframes glowP{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.25)}}
+.tooth-svg{position:relative;z-index:2;animation:toothF 4s ease-in-out infinite;filter:drop-shadow(0 20px 60px rgba(37,99,235,.4))}
+@keyframes toothF{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-14px) rotate(3deg)}66%{transform:translateY(-7px) rotate(-3deg)}}
+.orbit-r{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(124,185,244,.1);animation:orb 10s linear infinite}
+.or1{width:360px;height:360px;animation-duration:8s}
+.or2{width:430px;height:430px;animation-duration:14s;animation-direction:reverse;border-style:dashed;opacity:.5}
+.or3{width:500px;height:500px;animation-duration:18s;opacity:.3}
+@keyframes orb{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.orbit-dot{position:absolute;width:7px;height:7px;background:var(--blue3);border-radius:50%;top:-3.5px;left:50%;transform:translateX(-50%);box-shadow:0 0 10px var(--blue2)}
+.fc{position:absolute;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:.9rem 1.2rem;white-space:nowrap}
+.fc1{top:8%;right:-8%;animation:cfloat 5s ease-in-out infinite}
+.fc2{bottom:12%;left:-10%;animation:cfloat 6.5s 1s ease-in-out infinite}
+@keyframes cfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fc-n{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--sky);line-height:1}
+.fc-l{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:2px}
+.hero-scroll{position:absolute;bottom:2.5rem;left:5%;display:flex;align-items:center;gap:.8rem;z-index:4;opacity:0;animation:fadeUp .7s 1.3s ease forwards}
+.scroll-line{width:36px;height:1.5px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.scroll-line::after{content:'';position:absolute;top:0;left:0;height:100%;width:100%;background:var(--blue3);animation:sla 2s ease infinite}
+@keyframes sla{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.hero-scroll span{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+
+/* TRUST BAR */
+.trust-bar{background:var(--off2);border-top:1px solid rgba(26,86,219,.07);border-bottom:1px solid rgba(26,86,219,.07);padding:1.6rem 5%;display:flex;align-items:center;justify-content:center;gap:3.5rem;flex-wrap:wrap}
+.ti{display:flex;align-items:center;gap:.6rem;font-size:.73rem;color:var(--mid)}
+.ti-icon{width:30px;height:30px;background:linear-gradient(135deg,var(--blue2),var(--navy2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+
+/* STATS */
+.stats-row{background:var(--navy);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-i{padding:3rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.04);position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.stat-i:hover{background:var(--navy2)}.stat-i:last-child{border-right:none}
+.stat-n{font-family:'Libre Baskerville',serif;font-size:2.8rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--sky),var(--blue3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.5rem}
+.stat-bar{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:linear-gradient(90deg,var(--blue2),var(--sky));transition:width .6s}
+.stat-i:hover .stat-bar{width:65%}
+
+/* AI CHECKER */
+#ai-checker{background:var(--navy);padding:8rem 5%;position:relative;overflow:hidden}
+#ai-checker::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.1) 0%,transparent 70%);pointer-events:none}
+.checker-wrap{max-width:900px;margin:0 auto}
+.ai-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.28);padding:.4rem 1rem;border-radius:100px;margin-bottom:1.5rem}
+.ai-dot{width:7px;height:7px;background:var(--success);border-radius:50%;animation:blink 1.5s infinite}
+.ai-badge span{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sky);font-weight:500}
+.checker-ui{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;margin-top:2.5rem}
+.checker-header{padding:1.4rem 2rem;background:rgba(37,99,235,.1);border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:1rem}
+.ch-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--blue2),var(--navy2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.ch-title{font-size:.86rem;font-weight:600;color:#fff}
+.ch-sub{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:2px}
+.checker-body{padding:2rem}
+.sym-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.5rem}
+.sym-btn{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.07);border-radius:10px;padding:.78rem 1rem;font-size:.7rem;color:rgba(255,255,255,.5);cursor:pointer;transition:all .25s;font-family:'Outfit';text-align:left;display:flex;align-items:center;gap:.5rem}
+.sym-btn:hover{border-color:rgba(37,99,235,.4);color:#fff;background:rgba(37,99,235,.07)}
+.sym-btn.sel{border-color:var(--blue2);background:rgba(37,99,235,.14);color:var(--sky)}
+.sym-ic{font-size:.95rem}
+.input-row{display:flex;gap:.75rem;margin-bottom:1.5rem}
+.checker-input{flex:1;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:.88rem 1.2rem;font-size:.82rem;color:#fff;font-family:'Outfit';outline:none;transition:border-color .25s}
+.checker-input::placeholder{color:rgba(255,255,255,.22)}
+.checker-input:focus{border-color:var(--blue2)}
+.checker-btn{background:var(--blue2);color:#fff;border:none;padding:.88rem 2rem;border-radius:10px;font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-family:'Outfit';transition:all .3s;white-space:nowrap}
+.checker-btn:hover{background:var(--blue);transform:translateY(-2px)}
+.checker-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.ld-dots{display:none;align-items:center;gap:.3rem;padding:.5rem 0}
+.ld-dots.show{display:flex}
+.ld{width:6px;height:6px;background:var(--blue3);border-radius:50%;animation:ldA 1.2s ease-in-out infinite}
+.ld:nth-child(2){animation-delay:.2s}.ld:nth-child(3){animation-delay:.4s}
+@keyframes ldA{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+.ld-txt{font-size:.72rem;color:rgba(255,255,255,.35);margin-left:.5rem}
+.ai-result{display:none;padding:1.5rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:12px}
+.ai-result.show{display:block}
+.res-hdr{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.res-ic{width:36px;height:36px;background:rgba(16,185,129,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.res-title{font-size:.84rem;font-weight:600;color:var(--success)}
+.res-text{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.9;font-weight:300}
+.res-actions{display:flex;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap}
+.rb{font-size:.63rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:.62rem 1.3rem;border-radius:8px;cursor:pointer;font-family:'Outfit';text-decoration:none;transition:all .3s;border:none;display:inline-flex;align-items:center;gap:.35rem}
+.rb-p{background:var(--blue2);color:#fff}.rb-p:hover{background:var(--blue)}
+.rb-o{background:transparent;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.13)}.rb-o:hover{border-color:var(--blue2);color:var(--sky)}
+
+/* ABOUT */
+#about{padding:9rem 5%;background:#fff;position:relative;overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;max-width:1200px;margin:0 auto;align-items:center}
+.about-photos{position:relative;height:560px}
+.ab-img1{position:absolute;top:0;right:0;width:76%;height:79%;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(10,22,40,.12);display:block}
+.ab-img2{position:absolute;bottom:0;left:0;width:51%;height:51%;object-fit:cover;border-radius:16px;border:5px solid #fff;box-shadow:0 20px 60px rgba(10,22,40,.1);display:block}
+.ab-deco{position:absolute;top:-14px;right:-14px;width:76%;height:79%;border-radius:16px;border:1.5px solid rgba(26,86,219,.14);pointer-events:none}
+.ab-badge{position:absolute;bottom:22%;right:-5%;background:linear-gradient(135deg,var(--navy2),var(--blue2));color:#fff;padding:1.2rem 1.5rem;border-radius:14px;text-align:center;box-shadow:0 16px 50px rgba(10,22,40,.25);animation:badgeF 5s ease-in-out infinite}
+@keyframes badgeF{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ab-badge-n{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;line-height:1}
+.ab-badge-t{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
+.chip{display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
+.chip-line{width:28px;height:1.5px;background:linear-gradient(90deg,var(--blue2),var(--sky))}
+.chip span{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--blue2);font-weight:500}
+.sec-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;line-height:1.15;color:var(--navy);margin-bottom:1.4rem}
+.sec-title em{font-style:italic;color:var(--blue2)}
+.sec-title.light{color:#fff}.sec-title.light em{color:var(--sky)}
+.sec-title.center{text-align:center}
+.about-p{font-size:.88rem;font-weight:300;line-height:2;color:rgba(10,22,40,.5);margin-bottom:.9rem}
+.about-hr{width:44px;height:2px;background:linear-gradient(90deg,var(--blue2),var(--sky));margin:1.8rem 0;border-radius:1px}
+.dr-card{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;background:var(--off2);border-radius:12px;border:1px solid rgba(26,86,219,.1);margin-bottom:2rem}
+.dr-av{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--navy2),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.dr-name{font-size:.86rem;font-weight:600;color:var(--navy)}
+.dr-role{font-size:.7rem;color:var(--mid);margin-top:2px;font-weight:300}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:2rem}
+.feat{display:flex;align-items:center;gap:.55rem;font-size:.76rem;color:var(--mid);font-weight:300}
+.feat::before{content:'✓';color:var(--blue2);font-weight:700;flex-shrink:0}
+
+/* SERVICES */
+#services{background:var(--off);padding:9rem 5%}
+.svc-hdr{display:flex;justify-content:space-between;align-items:flex-end;max-width:1200px;margin:0 auto 4rem;flex-wrap:wrap;gap:2rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:1200px;margin:0 auto}
+.svc-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(26,86,219,.07);box-shadow:0 4px 24px rgba(10,22,40,.05);transition:all .4s;position:relative}
+.svc-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(26,86,219,.12);border-color:rgba(26,86,219,.2)}
+.svc-img{width:100%;height:190px;object-fit:cover;display:block;transition:transform .6s ease,filter .4s;filter:saturate(.8)}
+.svc-card:hover .svc-img{transform:scale(1.07);filter:saturate(1)}
+.svc-body{padding:1.4rem}
+.svc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.svc-icon{width:38px;height:38px;background:var(--off2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s}
+.svc-card:hover .svc-icon{background:linear-gradient(135deg,var(--blue2),var(--navy2))}
+.svc-tag{font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;padding:.22rem .7rem;background:var(--off2);color:var(--blue2);border-radius:100px;font-weight:500}
+.svc-card h3{font-family:'Libre Baskerville',serif;font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.45rem;line-height:1.3}
+.svc-card p{font-size:.74rem;font-weight:300;color:var(--mid);line-height:1.75;margin-bottom:1.1rem}
+.svc-link{font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);text-decoration:none;display:flex;align-items:center;gap:.3rem;opacity:0;transform:translateY(5px);transition:all .35s}
+.svc-card:hover .svc-link{opacity:1;transform:translateY(0)}
+.svc-accent{position:absolute;left:0;bottom:0;width:3px;height:0;background:linear-gradient(to top,var(--blue2),var(--sky));transition:height .4s}
+.svc-card:hover .svc-accent{height:100%}
+
+/* BEFORE AFTER */
+#ba{background:var(--navy);padding:9rem 5%}
+.ba-inner{max-width:860px;margin:0 auto;text-align:center}
+.ba-hdr{margin-bottom:3rem}
+.ba-wrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);cursor:ew-resize;user-select:none;max-width:700px;margin:0 auto}
+.ba-imgs{position:relative;height:400px}
+.ba-after{width:100%;height:100%;object-fit:cover;display:block}
+.ba-before-wrap{position:absolute;top:0;left:0;height:100%;overflow:hidden;width:50%}
+.ba-before-wrap img{width:700px;max-width:none;height:100%;object-fit:cover;display:block}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:3px;background:#fff;z-index:10;cursor:ew-resize}
+.ba-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:#fff;border-radius:50%;box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--navy);font-weight:700}
+.ba-lbl{position:absolute;top:1rem;padding:.38rem 1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:100px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;font-weight:500}
+.ba-lbl-b{left:1.5rem}.ba-lbl-a{right:1.5rem}
+.ba-note{font-size:.73rem;color:rgba(255,255,255,.28);margin-top:1.5rem;font-style:italic}
+
+/* WHY */
+#why{background:#fff;padding:9rem 5%}
+.why-hdr{text-align:center;max-width:540px;margin:0 auto 5rem}
+.why-hdr .chip{justify-content:center}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:1200px;margin:0 auto}
+.why-card{background:var(--off2);border-radius:16px;padding:2.5rem 2rem;text-align:center;border:1px solid transparent;transition:all .4s;position:relative;overflow:hidden}
+.why-card:hover{transform:translateY(-6px);border-color:rgba(26,86,219,.15);box-shadow:0 16px 50px rgba(26,86,219,.08)}
+.why-ic{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--blue2),var(--navy2));display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;box-shadow:0 8px 24px rgba(26,86,219,.22)}
+.why-card h3{font-family:'Libre Baskerville',serif;font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.6rem}
+.why-card p{font-size:.76rem;font-weight:300;color:var(--mid);line-height:1.8}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--off);padding:9rem 5%}
+.testi-hdr{text-align:center;margin-bottom:5rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1200px;margin:0 auto}
+.testi-card{background:#fff;border-radius:16px;padding:2.5rem 2rem;border:1px solid rgba(26,86,219,.07);box-shadow:0 4px 24px rgba(10,22,40,.04);transition:all .4s;position:relative;overflow:hidden}
+.testi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue2),var(--sky))}
+.testi-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(26,86,219,.1)}
+.testi-stars{display:flex;gap:2px;margin-bottom:.8rem}
+.testi-stars span{color:#f59e0b;font-size:.85rem}
+.testi-q{font-size:2.5rem;font-family:'Libre Baskerville',serif;color:rgba(26,86,219,.08);line-height:1;margin-bottom:.3rem}
+.testi-text{font-size:.83rem;font-weight:300;line-height:1.9;color:rgba(10,22,40,.52);font-style:italic;margin-bottom:1.8rem}
+.testi-foot{display:flex;align-items:center;gap:.9rem;padding-top:1.4rem;border-top:1px solid rgba(26,86,219,.07)}
+.testi-av{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block;border:2px solid rgba(26,86,219,.15)}
+.testi-name{font-size:.82rem;font-weight:600;color:var(--navy)}
+.testi-src{display:flex;align-items:center;gap:.35rem;font-size:.6rem;color:var(--light);margin-top:2px}
+.gg{width:13px;height:13px;background:linear-gradient(135deg,#4285f4,#34a853);border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:.48rem;font-weight:700;color:#fff}
+
+/* APPT CTA */
+#appt{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,var(--navy3) 100%);padding:9rem 5%;position:relative;overflow:hidden;text-align:center}
+#appt::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;border:1px solid rgba(37,99,235,.06);pointer-events:none}
+#appt::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:450px;height:450px;border-radius:50%;border:1px solid rgba(37,99,235,.1);pointer-events:none}
+.appt-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.appt-inner .chip{justify-content:center}
+.appt-inner p{font-size:.88rem;color:rgba(255,255,255,.38);margin:1.2rem 0 3.5rem;font-weight:300;line-height:1.9}
+.appt-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+/* CONTACT */
+#contact{background:#fff;padding:9rem 5%}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:6rem;max-width:1200px;margin:0 auto;align-items:start}
+.c-item{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem 0;border-bottom:1px solid rgba(26,86,219,.07)}
+.c-item:first-of-type{border-top:1px solid rgba(26,86,219,.07)}
+.c-ic{width:42px;height:42px;background:var(--off2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;border:1px solid rgba(26,86,219,.1);transition:all .3s}
+.c-item:hover .c-ic{background:var(--blue2);border-color:var(--blue2)}
+.c-lbl{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue2);margin-bottom:.3rem;font-weight:500}
+.c-item p,.c-item a{font-size:.84rem;font-weight:300;color:var(--mid);text-decoration:none;line-height:1.7}
+.c-item a:hover{color:var(--blue2)}
+.c-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;padding:1rem 2rem;font-size:.67rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-top:2rem;transition:all .3s;border-radius:10px;font-family:'Outfit'}
+.c-wa:hover{background:#1ebe5d;transform:translateY(-2px)}.c-wa svg{width:18px;height:18px;fill:#fff}
+.map-box{border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(10,22,40,.1);border:1px solid rgba(26,86,219,.08)}
+.map-box iframe{width:100%;height:480px;border:none;display:block}
+
+/* FOOTER */
+footer{background:var(--navy)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:3rem;padding:5rem 5% 4rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.f-logo-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.f-logo-ic{width:36px;height:36px;background:linear-gradient(135deg,var(--blue2),var(--navy2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.f-logo-txt{font-family:'Libre Baskerville',serif;font-size:1.2rem;font-weight:700;color:#fff}
+.f-logo-txt span{color:var(--sky)}
+.f-sub{font-size:.46rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(124,185,244,.4);display:block;margin-bottom:1.2rem}
+.f-about-p{font-size:.76rem;font-weight:300;color:rgba(255,255,255,.2);line-height:1.85;margin-bottom:1.5rem}
+.f-wa{display:inline-flex;align-items:center;gap:.5rem;color:#25D366;font-size:.68rem;text-decoration:none;border:1px solid rgba(37,211,102,.18);padding:.5rem 1rem;transition:all .3s;border-radius:8px}
+.f-wa:hover{background:rgba(37,211,102,.07)}.f-wa svg{width:13px;height:13px;fill:#25D366}
+.fcol h4{font-size:.54rem;letter-spacing:.35em;text-transform:uppercase;color:var(--sky);margin-bottom:1.4rem;font-weight:500;opacity:.55}
+.flinks{list-style:none}.flinks li{margin-bottom:.6rem}
+.flinks a{font-size:.74rem;font-weight:300;color:rgba(255,255,255,.2);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--sky)}
+.fhours p{font-size:.74rem;font-weight:300;color:rgba(255,255,255,.2);line-height:2}
+.fhours .open{color:var(--sky)}
+.footer-bot{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 5%;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.04)}
+.fcopy{font-size:.6rem;color:rgba(255,255,255,.1);letter-spacing:.06em}
+.fcopy a{color:rgba(255,255,255,.1);text-decoration:none;transition:.2s}.fcopy a:hover{color:var(--sky)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@media(max-width:1100px){.hero-inner{grid-template-columns:1fr}.hero-right{display:none}.svc-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr}.about-grid{grid-template-columns:1fr;gap:3rem}.about-photos{display:none}.why-grid{grid-template-columns:1fr 1fr}.testi-grid{grid-template-columns:1fr 1fr}.sym-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.nav-links{display:none;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:75vw;max-width:285px;background:#fff;padding:5rem 2.5rem 2rem;gap:2rem;box-shadow:-10px 0 60px rgba(10,22,40,.1);border-left:1px solid rgba(26,86,219,.08);z-index:900}.nav-links.open{display:flex}.nav-links a{font-size:.9rem;color:var(--navy)}.hamburger{display:flex}.stats-row{grid-template-columns:1fr 1fr}.stat-i:nth-child(2){border-right:none}.testi-grid{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr;gap:3rem}.trust-bar{gap:1.5rem}#about,#services,#ai-checker,#why,#testimonials,#appt,#contact,#ba{padding:6rem 4%}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:flex-start}.appt-btns{flex-direction:column;align-items:center}.sym-grid{grid-template-columns:1fr}.input-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<a href="https://wa.me/918208510630?text=Hi%20ZenSmile%20Dental!%20I'd%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<nav id="navbar">
+  <a href="#hero" class="logo">
+    <div class="logo-icon">🦷</div>
+    <div>
+      <span class="logo-main">ZenSmile</span>
+      <span class="logo-sub">Dental Clinic &mdash; Colaba, Mumbai</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#ai-checker">AI Check</a></li>
+    <li><a href="#ba">Results</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/918208510630?text=Hi!%20I%20want%20to%20book." target="_blank" rel="noopener" class="nav-book">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-mesh"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="bdot"></span><span>Open Now &mdash; Colaba, South Mumbai</span></div>
+      <h1 class="hero-h1">Your <em>Perfect</em><br>Smile<br><span class="outline">Starts Here.</span></h1>
+      <p class="hero-p">Premium dental care in the heart of Mumbai's Colaba. World-class treatments, compassionate care and a clinic where dentistry feels genuinely comfortable.</p>
+      <div class="hero-btns">
+        <a href="#ai-checker" class="btn btn-primary">🤖 Free AI Symptom Check</a>
+        <a href="https://wa.me/918208510630?text=Hi%20ZenSmile!%20I'd%20like%20to%20book." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book on WhatsApp
+        </a>
+        <a href="tel:+918208510630" class="btn btn-ghost-w">📞 Call Now</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="tooth-wrap">
+        <div class="tooth-glow"></div>
+        <div class="orbit-r or1"><div class="orbit-dot"></div></div>
+        <div class="orbit-r or2"><div class="orbit-dot"></div></div>
+        <div class="orbit-r or3"></div>
+        <div class="tooth-svg">
+          <svg width="190" height="230" viewBox="0 0 200 240" fill="none">
+            <defs>
+              <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0f8ff"/><stop offset="50%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#93c5fd"/></linearGradient>
+              <linearGradient id="ts" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(37,99,235,0.14)"/><stop offset="100%" stop-color="rgba(37,99,235,0)"/></linearGradient>
+            </defs>
+            <path d="M100 10 C60 10 30 35 25 70 C20 100 22 130 28 150 C35 175 45 200 55 220 C60 230 70 232 78 228 C85 224 90 215 95 205 C97 200 99 195 100 195 C101 195 103 200 105 205 C110 215 115 224 122 228 C130 232 140 230 145 220 C155 200 165 175 172 150 C178 130 180 100 175 70 C170 35 140 10 100 10 Z" fill="url(#tg)" stroke="rgba(147,197,253,0.4)" stroke-width="1.5"/>
+            <path d="M100 10 C60 10 30 35 25 70 C20 100 22 130 28 150 C35 175 45 200 55 220 C60 230 70 232 78 228 C85 224 90 215 95 205 C97 200 99 195 100 195 C101 195 103 200 105 205 C110 215 115 224 122 228 C130 232 140 230 145 220 C155 200 165 175 172 150 C178 130 180 100 175 70 C170 35 140 10 100 10 Z" fill="url(#ts)"/>
+            <ellipse cx="75" cy="55" rx="18" ry="28" fill="rgba(255,255,255,0.5)" transform="rotate(-15 75 55)"/>
+            <path d="M68 195 C62 205 55 215 48 228 C44 235 42 238 45 240 C48 242 52 238 56 232 C62 222 68 208 72 200 Z" fill="url(#tg)" stroke="rgba(147,197,253,0.35)" stroke-width="1"/>
+            <path d="M132 195 C138 205 145 215 152 228 C156 235 158 238 155 240 C152 242 148 238 144 232 C138 222 132 208 128 200 Z" fill="url(#tg)" stroke="rgba(147,197,253,0.35)" stroke-width="1"/>
+            <path d="M96 195 C95 205 94 215 93 228 C92 235 95 240 100 240 C105 240 108 235 107 228 C106 215 105 205 104 195 Z" fill="url(#tg)" stroke="rgba(147,197,253,0.35)" stroke-width="1"/>
+            <line x1="65" y1="35" x2="55" y2="75" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="75" y1="30" x2="68" y2="55" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="fc fc1"><div class="fc-n">2,500+</div><div class="fc-l">Smiles Restored</div></div>
+        <div class="fc fc2"><div class="fc-n">15+</div><div class="fc-l">Years Experience</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll to explore</span></div>
+</section>
+
+<div class="trust-bar">
+  <div class="ti"><div class="ti-icon">🏥</div>NABH Accredited</div>
+  <div class="ti"><div class="ti-icon">💉</div>Pain-Free Dentistry</div>
+  <div class="ti"><div class="ti-icon">🔬</div>Digital X-Ray</div>
+  <div class="ti"><div class="ti-icon">⭐</div>4.9★ Google Rating</div>
+  <div class="ti"><div class="ti-icon">📍</div>Colaba, Mumbai</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-i reveal"><div class="stat-n" data-target="2500">0</div><div class="stat-l">Smiles Restored</div><div class="stat-bar"></div></div>
+  <div class="stat-i reveal d1"><div class="stat-n" data-target="15">0</div><div class="stat-l">Years of Excellence</div><div class="stat-bar"></div></div>
+  <div class="stat-i reveal d2"><div class="stat-n">4.9★</div><div class="stat-l">Google Rating</div><div class="stat-bar"></div></div>
+  <div class="stat-i reveal d3"><div class="stat-n" data-target="98">0</div><div class="stat-l">% Patient Satisfaction</div><div class="stat-bar"></div></div>
+</div>
+
+<!-- AI SYMPTOM CHECKER -->
+<section id="ai-checker">
+  <div class="checker-wrap">
+    <div class="reveal">
+      <div class="ai-badge"><span class="ai-dot"></span><span>AI-Powered &mdash; Free Dental Assessment</span></div>
+      <h2 class="sec-title light">Describe Your <em>Symptoms</em><br>Get Instant Guidance</h2>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.38);font-weight:300;line-height:1.9;max-width:580px;margin-top:.8rem">Select your symptoms or describe them in your own words. Our AI gives you an initial assessment — completely free, no registration needed.</p>
+    </div>
+    <div class="checker-ui reveal d1">
+      <div class="checker-header">
+        <div class="ch-icon">🤖</div>
+        <div><div class="ch-title">ZenSmile AI Dental Assistant</div><div class="ch-sub">Instant assessment — not a substitute for professional diagnosis</div></div>
+      </div>
+      <div class="checker-body">
+        <div class="sym-grid" id="symGrid">
+          <button class="sym-btn" data-s="Tooth pain or sensitivity"><span class="sym-ic">😬</span>Tooth Pain / Sensitivity</button>
+          <button class="sym-btn" data-s="Bleeding gums"><span class="sym-ic">🩸</span>Bleeding Gums</button>
+          <button class="sym-btn" data-s="Bad breath"><span class="sym-ic">💨</span>Bad Breath</button>
+          <button class="sym-btn" data-s="Swollen face or jaw"><span class="sym-ic">🤕</span>Swollen Face / Jaw</button>
+          <button class="sym-btn" data-s="Loose or broken tooth"><span class="sym-ic">🦷</span>Loose / Broken Tooth</button>
+          <button class="sym-btn" data-s="Yellow or stained teeth"><span class="sym-ic">😅</span>Yellow / Stained Teeth</button>
+          <button class="sym-btn" data-s="Tooth gap or misalignment"><span class="sym-ic">😮</span>Gaps / Misalignment</button>
+          <button class="sym-btn" data-s="Jaw pain or clicking"><span class="sym-ic">🦴</span>Jaw Pain / Clicking</button>
+          <button class="sym-btn" data-s="Wisdom tooth pain"><span class="sym-ic">⚡</span>Wisdom Tooth Pain</button>
+        </div>
+        <div class="input-row">
+          <input class="checker-input" id="checkerInput" type="text" placeholder="Or describe your dental concern in your own words..."/>
+          <button class="checker-btn" id="checkerBtn" onclick="runChecker()">🔍 Analyse</button>
+        </div>
+        <div class="ld-dots" id="ldDots">
+          <div class="ld"></div><div class="ld"></div><div class="ld"></div>
+          <span class="ld-txt">AI is analysing your symptoms...</span>
+        </div>
+        <div class="ai-result" id="aiResult">
+          <div class="res-hdr"><div class="res-ic">✅</div><div class="res-title">AI Assessment Complete</div></div>
+          <div class="res-text" id="resText"></div>
+          <div class="res-actions">
+            <a href="https://wa.me/918208510630?text=Hi%20ZenSmile!%20I%20used%20your%20AI%20checker%20and%20want%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="rb rb-p">📅 Book Consultation</a>
+            <a href="tel:+918208510630" class="rb rb-o">📞 Call Clinic</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photos reveal">
+      <div class="ab-deco"></div>
+      <img class="ab-img1" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=85" alt="ZenSmile Dental"/>
+      <img class="ab-img2" src="https://images.unsplash.com/photo-1588776814546-1ffbb4c3e22b?w=600&q=85" alt="Modern equipment"/>
+      <div class="ab-badge"><div class="ab-badge-n">🏆</div><div class="ab-badge-t">Premium Clinic</div></div>
+    </div>
+    <div class="reveal d1">
+      <div class="chip"><div class="chip-line"></div><span>About Us</span></div>
+      <h2 class="sec-title">Where Expertise<br>Meets <em>Compassion</em></h2>
+      <p class="about-p">ZenSmile Dental Clinic is Mumbai's premier dental destination, nestled in the heart of Colaba near the iconic Nariman House and Apollo Bandar. We combine cutting-edge technology with a deeply human approach to dentistry.</p>
+      <p class="about-p">Under the expert guidance of Dr. Zen, our team delivers everything from routine check-ups to full smile makeovers with precision, care and absolute comfort for every single patient.</p>
+      <div class="about-hr"></div>
+      <div class="dr-card">
+        <div class="dr-av">👨‍⚕️</div>
+        <div><div class="dr-name">Dr. Zen — Lead Dentist</div><div class="dr-role">BDS, MDS &middot; 15+ Years Experience &middot; Colaba, Mumbai</div></div>
+      </div>
+      <div class="feat-grid">
+        <div class="feat">Digital X-Ray &amp; OPG</div>
+        <div class="feat">Painless Injections</div>
+        <div class="feat">ISO Certified Sterilisation</div>
+        <div class="feat">Child-Friendly Care</div>
+        <div class="feat">Same-Day Emergency</div>
+        <div class="feat">EMI Available</div>
+      </div>
+      <a href="https://wa.me/918208510630?text=Hi%20ZenSmile!%20I%20want%20to%20know%20more." target="_blank" rel="noopener" class="btn btn-primary">Chat With Us &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-hdr reveal">
+    <div>
+      <div class="chip"><div class="chip-line"></div><span>Treatments</span></div>
+      <h2 class="sec-title">Complete <em>Dental Care</em><br>Under One Roof</h2>
+    </div>
+    <a href="https://wa.me/918208510630?text=Hi!%20I%20want%20to%20book%20a%20treatment." target="_blank" rel="noopener" class="btn btn-primary">Book Any Treatment</a>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=85" alt="Teeth Whitening"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">✨</div><span class="svc-tag">Popular</span></div><h3>Teeth Whitening</h3><p>Professional whitening up to 8 shades brighter in one session using advanced technology.</p><a href="https://wa.me/918208510630?text=Book%20Teeth%20Whitening" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d1" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=85" alt="Implants"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">🔩</div><span class="svc-tag">Advanced</span></div><h3>Dental Implants</h3><p>Permanent, natural-looking tooth replacements using the latest titanium implant technology.</p><a href="https://wa.me/918208510630?text=Book%20Dental%20Implants" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d2" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=85" alt="Braces"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">😁</div><span class="svc-tag">Trending</span></div><h3>Braces &amp; Aligners</h3><p>Metal, ceramic and clear aligners for a perfectly straight, confident smile.</p><a href="https://wa.me/918208510630?text=Book%20Braces" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d3" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1598256989043-d2eff39a25e3?w=600&q=85" alt="Root Canal"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">💉</div><span class="svc-tag">Painless</span></div><h3>Root Canal Therapy</h3><p>Completely painless root canal treatment using advanced rotary technology.</p><a href="https://wa.me/918208510630?text=Book%20Root%20Canal" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=600&q=85" alt="Veneers"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">💎</div><span class="svc-tag">Premium</span></div><h3>Veneers &amp; Crowns</h3><p>Porcelain veneers and crowns crafted for perfection — transforming smiles beautifully.</p><a href="https://wa.me/918208510630?text=Book%20Veneers" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d1" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=85" alt="Gum"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">🩺</div></div><h3>Gum Treatment</h3><p>Comprehensive periodontal care — scaling, deep cleaning and gum surgery for healthy gums.</p><a href="https://wa.me/918208510630?text=Book%20Gum%20Treatment" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d2" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1588776813677-77aef5595b83?w=600&q=85" alt="Kids"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">👶</div><span class="svc-tag">Gentle</span></div><h3>Kids Dentistry</h3><p>Fun, gentle and anxiety-free dental care specially designed for children of all ages.</p><a href="https://wa.me/918208510630?text=Book%20Kids%20Dentistry" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+    <div class="svc-card reveal d3" data-tilt><img class="svc-img" src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=85" alt="Smile Makeover"/><div class="svc-accent"></div><div class="svc-body"><div class="svc-top"><div class="svc-icon">⭐</div><span class="svc-tag">Signature</span></div><h3>Full Smile Makeover</h3><p>A complete transformation combining whitening, veneers, alignment and more.</p><a href="https://wa.me/918208510630?text=Book%20Smile%20Makeover" target="_blank" rel="noopener" class="svc-link">Book Now →</a></div></div>
+  </div>
+</section>
+
+<!-- BEFORE AFTER -->
+<section id="ba">
+  <div class="ba-inner">
+    <div class="ba-hdr reveal">
+      <div class="chip" style="justify-content:center"><div class="chip-line" style="background:linear-gradient(90deg,var(--sky),var(--blue3))"></div><span style="color:var(--sky)">Real Results</span></div>
+      <h2 class="sec-title light center">See the <em>Transformation</em></h2>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.32);margin-top:.8rem;font-weight:300">Drag the slider left and right to reveal before &amp; after</p>
+    </div>
+    <div class="ba-wrap reveal d1" id="baSlider">
+      <div class="ba-imgs">
+        <img class="ba-after" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=700&q=85" alt="After"/>
+        <div class="ba-before-wrap" id="baBefore">
+          <img src="https://images.unsplash.com/photo-1588776813677-77aef5595b83?w=700&q=85" alt="Before"/>
+        </div>
+        <div class="ba-handle" id="baHandle"><div class="ba-circle">⇔</div></div>
+        <span class="ba-lbl ba-lbl-b">Before</span>
+        <span class="ba-lbl ba-lbl-a">After</span>
+      </div>
+    </div>
+    <p class="ba-note reveal d2">* Results shown are representative. Individual results may vary. Consult Dr. Zen for a personalised treatment plan.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-hdr reveal">
+    <div class="chip" style="justify-content:center"><div class="chip-line"></div><span>Why ZenSmile</span></div>
+    <h2 class="sec-title center">Why Mumbai <em>Trusts</em><br>ZenSmile</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-ic">🔬</div><h3>Advanced Technology</h3><p>Digital X-rays, OPG scans, rotary endodontics and the latest in modern painless dental technology.</p></div>
+    <div class="why-card reveal d1"><div class="why-ic">💉</div><h3>Truly Painless</h3><p>We use premium anaesthetics and advanced techniques to ensure every procedure is completely comfortable.</p></div>
+    <div class="why-card reveal d2"><div class="why-ic">🏥</div><h3>Sterile &amp; Safe</h3><p>ISO-certified sterilisation protocols and strict hygiene standards protecting every patient, every time.</p></div>
+    <div class="why-card reveal d3"><div class="why-ic">📍</div><h3>Prime Colaba Location</h3><p>Conveniently located near Nariman House and Apollo Bandar in the heart of South Mumbai.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-hdr reveal">
+    <div class="chip" style="justify-content:center"><div class="chip-line"></div><span>Patient Stories</span></div>
+    <h2 class="sec-title center">What Our <em>Patients</em><br>Say About Us</h2>
+    <p style="font-size:.78rem;color:var(--light);margin-top:.5rem;font-weight:300">4.9★ average from verified Google reviews</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="testi-q">"</div>
+      <p class="testi-text">Best dental clinic in South Mumbai! I was terrified of dentists but Dr. Zen made the entire experience calm and comfortable. Got my root canal done here — completely painless! Clean, modern and super professional.</p>
+      <div class="testi-foot"><img class="testi-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=85" alt="Rahul M."/><div><div class="testi-name">Rahul Mehta</div><div class="testi-src"><span class="gg">G</span>Google Review &middot; Colaba</div></div></div>
+    </div>
+    <div class="testi-card reveal d1">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="testi-q">"</div>
+      <p class="testi-text">Got my teeth whitening done and the results are incredible — 7 shades brighter in one session! Dr. Zen is so professional and explains everything clearly. Referred all my friends. Absolutely love ZenSmile!</p>
+      <div class="testi-foot"><img class="testi-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=85" alt="Priya N."/><div><div class="testi-name">Priya Nair</div><div class="testi-src"><span class="gg">G</span>Google Review &middot; Mumbai</div></div></div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="testi-q">"</div>
+      <p class="testi-text">Got my dental implant done after being scared for years. The whole process was so smooth and the AI checker on the website helped me understand my issue before visiting. Truly world-class dentistry in Colaba!</p>
+      <div class="testi-foot"><img class="testi-av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=85" alt="Aditya S."/><div><div class="testi-name">Aditya Shah</div><div class="testi-src"><span class="gg">G</span>Google Review &middot; South Mumbai</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPT CTA -->
+<section id="appt">
+  <div class="appt-inner reveal">
+    <div class="chip" style="justify-content:center"><div class="chip-line" style="background:linear-gradient(90deg,var(--sky),var(--blue3))"></div><span style="color:var(--sky)">Book Today</span></div>
+    <h2 class="sec-title light center">Ready for Your<br><em>Perfect Smile?</em></h2>
+    <p>Walk in or book instantly via WhatsApp. Emergency appointments available same-day at our Colaba clinic.</p>
+    <div class="appt-btns">
+      <a href="https://wa.me/918208510630?text=Hi%20ZenSmile!%20I'd%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-wa" style="padding:1.1rem 2.5rem;font-size:.72rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book on WhatsApp
+      </a>
+      <a href="#ai-checker" class="btn btn-ghost-outline">🤖 Try AI Checker</a>
+      <a href="tel:+918208510630" class="btn btn-white">📞 +91 82085 10630</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="reveal">
+      <div class="chip"><div class="chip-line"></div><span>Find Us</span></div>
+      <h2 class="sec-title" style="margin-bottom:2.5rem">Visit Us in<br><em>Colaba, Mumbai</em></h2>
+      <div class="c-item"><div class="c-ic">📍</div><div><div class="c-lbl">Clinic Address</div><p>Shop No. 9, Besides Jain Temple<br>Pestonji Street, near Nariman House<br>Apollo Bandar, Colaba<br>Mumbai, Maharashtra &mdash; 400005</p></div></div>
+      <div class="c-item"><div class="c-ic">📞</div><div><div class="c-lbl">Phone &amp; WhatsApp</div><a href="tel:+918208510630">+91 82085 10630</a></div></div>
+      <div class="c-item"><div class="c-ic">🕐</div><div><div class="c-lbl">Clinic Hours</div><p>Monday – Saturday: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 2:00 PM<br><span style="color:var(--blue2);font-size:.76rem">Emergency appointments available ✓</span></p></div></div>
+      <div class="c-item"><div class="c-ic">🚇</div><div><div class="c-lbl">How to Reach</div><p>Near CSMT / Churchgate Station<br>5 min from Colaba Causeway<br>Next to Nariman House</p></div></div>
+      <a href="https://wa.me/918208510630?text=Hi%20ZenSmile!%20I'd%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="c-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Booking
+      </a>
+    </div>
+    <div class="map-box reveal d1">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2!2d72.8317!3d18.9215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c6ac8f7251%3A0x4d6f0b9c4b4e2d1a!2sColaba%2C%20Mumbai%2C%20Maharashtra%20400005!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ZenSmile Dental Clinic Colaba Mumbai"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo-row"><div class="f-logo-ic">🦷</div><div class="f-logo-txt">Zen<span>Smile</span></div></div>
+      <span class="f-sub">Premium Dental Clinic &mdash; Colaba, Mumbai</span>
+      <p class="f-about-p">Mumbai's most trusted dental clinic at Colaba — delivering world-class dental care with compassion, technology and a commitment to painless, comfortable treatment for every patient.</p>
+      <a href="https://wa.me/918208510630" target="_blank" rel="noopener" class="f-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#25D366"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+    <div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a href="#about">About Us</a></li><li><a href="#services">Treatments</a></li><li><a href="#ai-checker">AI Checker</a></li><li><a href="#ba">Results</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="fcol"><h4>Treatments</h4><ul class="flinks"><li><a href="https://wa.me/918208510630?text=Book%20Teeth%20Whitening" target="_blank">Teeth Whitening</a></li><li><a href="https://wa.me/918208510630?text=Book%20Dental%20Implants" target="_blank">Dental Implants</a></li><li><a href="https://wa.me/918208510630?text=Book%20Braces" target="_blank">Braces &amp; Aligners</a></li><li><a href="https://wa.me/918208510630?text=Book%20Root%20Canal" target="_blank">Root Canal</a></li><li><a href="https://wa.me/918208510630?text=Book%20Veneers" target="_blank">Veneers &amp; Crowns</a></li><li><a href="https://wa.me/918208510630?text=Book%20Smile%20Makeover" target="_blank">Smile Makeover</a></li></ul></div>
+    <div class="fcol fhours"><h4>Hours</h4><p><span class="open">Mon – Sat</span><br>9:00 AM – 8:00 PM</p><p style="margin-top:.8rem"><span class="open">Sunday</span><br>10:00 AM – 2:00 PM</p><p style="margin-top:1rem;font-size:.68rem;color:rgba(255,255,255,.13)">Emergency: Available ✓</p><p style="margin-top:.5rem;font-size:.68rem;color:rgba(255,255,255,.13)">📍 Colaba, Mumbai 400005</p></div>
+  </div>
+  <div class="footer-bot">
+    <p class="fcopy">&copy; 2025 ZenSmile Dental Clinic &mdash; Shop No. 9, Pestonji Street, Colaba, Mumbai 400005</p>
+    <p class="fcopy">Website by <a href="https://wa.me/919352078980" target="_blank" rel="noopener">WebBloom Agency</a></p>
+  </div>
+</footer>
+
+<script>
+/* CURSOR */
+var d=document.getElementById('curDot'),r=document.getElementById('curRing');
+if(window.innerWidth>900){
+  document.addEventListener('mousemove',function(e){d.style.left=e.clientX+'px';d.style.top=e.clientY+'px';setTimeout(function(){r.style.left=e.clientX+'px';r.style.top=e.clientY+'px'},80)});
+  document.querySelectorAll('a,button').forEach(function(el){el.addEventListener('mouseenter',function(){r.classList.add('h')});el.addEventListener('mouseleave',function(){r.classList.remove('h')})});
+}else{d.style.display='none';r.style.display='none'}
+
+/* NAV */
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>70)});
+var hbg=document.getElementById('hamburger'),nl=document.getElementById('navLinks'),mo=false;
+hbg.addEventListener('click',function(){mo=!mo;nl.classList.toggle('open',mo);document.getElementById('h1').style.transform=mo?'rotate(45deg) translate(5px,5px)':'';document.getElementById('h2').style.opacity=mo?'0':'1';document.getElementById('h3').style.transform=mo?'rotate(-45deg) translate(5px,-5px)':'';});
+nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mo=false;nl.classList.remove('open');document.getElementById('h1').style.transform='';document.getElementById('h2').style.opacity='1';document.getElementById('h3').style.transform='';})});
+
+/* PARTICLES */
+(function(){
+  var c=document.getElementById('particle-canvas'),ctx=c.getContext('2d'),pts=[],mx=0,my=0;
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight}resize();
+  window.addEventListener('resize',resize);
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+  for(var i=0;i<80;i++)pts.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.4+.4,o:Math.random()*.35+.08,col:Math.random()>.6?'124,185,244':'59,130,246'});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(function(p,i){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
+      var dx=mx-p.x,dy=my-p.y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<100){p.x-=dx*.012;p.y-=dy*.012}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+p.col+','+p.o+')';ctx.fill();
+      for(var j=i+1;j<pts.length;j++){
+        var p2=pts[j],dx2=p.x-p2.x,dy2=p.y-p2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
+        if(d2<110){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.strokeStyle='rgba(59,130,246,'+(0.055*(1-d2/110))+')';ctx.lineWidth=.5;ctx.stroke()}
+      }
+    });
+    requestAnimationFrame(draw);
+  }draw();
+})();
+
+/* SCROLL REVEAL */
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible')},i*70);obs.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+/* COUNT UP */
+var cnts=document.querySelectorAll('.stat-n[data-target]');
+var cob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,tgt=parseInt(el.getAttribute('data-target')),cur=0,inc=tgt/45;var t=setInterval(function(){cur+=inc;if(cur>=tgt){cur=tgt;clearInterval(t)}el.textContent=Math.floor(cur)+(tgt>=100?'+':'');},40);cob.unobserve(el)}})},{threshold:.5});
+cnts.forEach(function(c){cob.observe(c)});
+
+/* 3D TILT */
+if(window.innerWidth>900){
+  document.querySelectorAll('[data-tilt]').forEach(function(c){
+    c.addEventListener('mousemove',function(e){var rect=c.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width-.5,y=(e.clientY-rect.top)/rect.height-.5;c.style.transform='perspective(900px) rotateY('+(x*12)+'deg) rotateX('+(-y*12)+'deg) scale(1.03)';c.style.zIndex='5'});
+    c.addEventListener('mouseleave',function(){c.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)';c.style.zIndex='1'});
+  });
+}
+
+/* BEFORE / AFTER SLIDER */
+(function(){
+  var slider=document.getElementById('baSlider'),handle=document.getElementById('baHandle'),before=document.getElementById('baBefore');
+  if(!slider)return;
+  var drag=false;
+  function setPos(x){var rect=slider.getBoundingClientRect(),pct=Math.min(Math.max((x-rect.left)/rect.width,0),1)*100;before.style.width=pct+'%';handle.style.left=pct+'%'}
+  setPos(slider.getBoundingClientRect().left+slider.getBoundingClientRect().width*.5);
+  handle.addEventListener('mousedown',function(){drag=true});
+  document.addEventListener('mouseup',function(){drag=false});
+  document.addEventListener('mousemove',function(e){if(drag)setPos(e.clientX)});
+  handle.addEventListener('touchstart',function(e){drag=true;e.preventDefault()},{passive:false});
+  document.addEventListener('touchend',function(){drag=false});
+  document.addEventListener('touchmove',function(e){if(drag)setPos(e.touches[0].clientX)},{passive:true});
+  slider.addEventListener('click',function(e){setPos(e.clientX)});
+})();
+
+/* AI SYMPTOM CHECKER */
+var selSyms=[];
+document.querySelectorAll('.sym-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    btn.classList.toggle('sel');
+    var s=btn.getAttribute('data-s'),idx=selSyms.indexOf(s);
+    if(idx===-1)selSyms.push(s);else selSyms.splice(idx,1);
+  });
+});
+
+async function runChecker(){
+  var input=document.getElementById('checkerInput').value.trim();
+  var syms=selSyms.slice();
+  if(input)syms.push(input);
+  if(!syms.length){alert('Please select a symptom or describe your concern.');return}
+  var btn=document.getElementById('checkerBtn');
+  var dots=document.getElementById('ldDots');
+  var result=document.getElementById('aiResult');
+  btn.disabled=true;btn.textContent='Analysing...';
+  dots.classList.add('show');result.classList.remove('show');
+  var prompt='You are Dr. Zen, a compassionate and professional dentist at ZenSmile Dental Clinic in Colaba, Mumbai. A patient reports: '+syms.join(', ')+'. Provide a warm, professional dental assessment in 3-4 sentences covering: (1) what these symptoms may indicate, (2) urgency level — routine checkup / visit within a week / urgent, (3) a gentle recommendation to visit ZenSmile for a proper in-person examination. Be reassuring but honest. Do not use excessive medical jargon. End by warmly encouraging them to book an appointment at ZenSmile Dental Clinic, Colaba, Mumbai.';
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,messages:[{role:'user',content:prompt}]})
+    });
+    var data=await res.json();
+    var txt=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:'Thank you for sharing your symptoms. Based on what you have described, we recommend scheduling a consultation with Dr. Zen at ZenSmile Dental Clinic, Colaba for a proper examination. Early assessment always leads to better outcomes. Please book your appointment via WhatsApp or give us a call!';
+    document.getElementById('resText').textContent=txt;
+    result.classList.add('show');
+  }catch(err){
+    document.getElementById('resText').textContent='Thank you for using our AI checker! Based on your symptoms, we recommend visiting ZenSmile Dental Clinic, Colaba for a proper consultation with Dr. Zen. Book your appointment via WhatsApp or call us — we are happy to help!';
+    result.classList.add('show');
+  }
+  dots.classList.remove('show');btn.disabled=false;btn.textContent='🔍 Analyse';
+}
+</script>
+</body>
+</html>
